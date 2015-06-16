@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- //////////////////////////////// -->
+    <!-- 								  -->
+    <!--			 Properties			  -->
+    <!-- 								  -->
+    <!-- //////////////////////////////// -->
+
+    <bean name="CrafterAuthoringClientProperties"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath*:application.properties</value>
+                <value>classpath*:custom-application.properties</value>
+            </list>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true" />
+    </bean>
+
+
+    <bean id="Authenticator" class="com.crafter.authoring.client.authentication.AlfrescoAuthenticator">
+        <property name="authenticationUri"><value>${authoring.authenticationUri}</value></property>
+        <property name="connector" ref="Connector"/>
+    </bean>
+
+    <bean id="ContentWriter" class="com.crafter.authoring.client.repository.AlfrescoContentWriter">
+        <property name="writeAssetUri"><value>${authoring.writeAssetUri}</value></property>
+        <property name="writeContentUri"><value>${authoring.writeContentUri}</value></property>
+        <property name="connector" ref="Connector"/>
+    </bean>
+
+    <bean id="Connector" class="com.crafter.authoring.client.connector.HttpConnector">
+        <property name="authoringUrl"><value>${authoring.url}</value></property>
+    </bean>
+
+</beans>
