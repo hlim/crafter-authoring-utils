@@ -20,6 +20,7 @@ public class UploadFilesMain {
     private static final String PATH_ASSETS = "/static-assets";
     private static final String PATH_TEMPLATES = "/templates";
     private static final String PATH_SCRIPTS = "/scripts";
+    private static final String PATH_CLASSES = "/classes";
 
     public static void main(String [] args) throws Exception {
         if (args.length > 4) {
@@ -49,6 +50,7 @@ public class UploadFilesMain {
             writeContents(writer, ticket, new File(rootPath + PATH_ASSETS), site, PATH_ASSETS, true);
             writeContents(writer, ticket, new File(rootPath + PATH_TEMPLATES), site, PATH_TEMPLATES, true);
             writeContents(writer, ticket, new File(rootPath + PATH_SCRIPTS), site, PATH_SCRIPTS, true);
+            writeContents(writer, ticket, new File(rootPath + PATH_CLASSES), site, PATH_CLASSES, true);
         } else {
             System.out.println("[UploadFilesMain]" + rootPath + " does not exist or is not a directory.");
         }
